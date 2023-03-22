@@ -3,7 +3,7 @@ import openai
 import requests
 
 # Set up OpenAI API key
-openai.api_key = "YOUR_API_KEY"
+openai.api_key = st.text_input("Enter OpenAI API key:", type="password")
 
 # Define function to retrieve GitHub repo information
 def get_repo_info(url):
