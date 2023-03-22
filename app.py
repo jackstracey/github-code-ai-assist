@@ -24,7 +24,7 @@ def generate_response(prompt, repo_info):
     description = repo_info.get("description", "")
     if description is None:
         description = ""
-    readme_url = repo_info["clone_url"] + "/readme"
+    readme_url = repo_info["html_url"] + "/readme"
     readme_response = requests.get(readme_url)
     readme_contents = readme_response.json()["content"]
     
