@@ -19,13 +19,12 @@ def get_repo_info(url):
     # Return repo information as JSON
     return response.json()
 
-# Define function to generate AI response
 def generate_response(prompt, repo_info):
     # Retrieve repo description and readme contents
     description = repo_info.get("description", "")
     if description is None:
         description = ""
-    readme_url = repo_info["url"] + "/readme"
+    readme_url = repo_info["html_url"] + "/readme"
     readme_response = requests.get(readme_url)
     readme_contents = readme_response.json()["content"]
     
