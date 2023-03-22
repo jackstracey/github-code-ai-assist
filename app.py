@@ -1,6 +1,7 @@
 import streamlit as st
 import openai
 import requests
+import base64
 
 # Set up OpenAI API key
 openai.api_key = st.text_input("Enter OpenAI API key:", type="password")
@@ -44,8 +45,9 @@ def generate_response(prompt, repo_info):
 # Set up StreamLit app
 st.title("GitHub AI Prompt")
 url = st.text_input("Enter GitHub repo URL:")
-prompt = st.text_input("Enter user prompt:")
+prompt = "Please provide a summary of the main features of this Python repository, and suggest any improvements that could be made to the codebase. The repository is called \"" + url.split("/")[-1] + "\" and is located at \"" + url + "\"."
 if st.button("Generate Response"):
     repo_info = get_repo_info(url)
     response = generate_response(prompt, repo_info)
-    st.write(response)
+    decoded_response = base64.b64decode(response).decode("utf-8")
+    st.write(decoded_response)
